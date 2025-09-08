@@ -9,9 +9,10 @@ const DisplayCategories = (Categories) => {
     const categoriesList = document.getElementById("categories");
     categoriesList.innerHTML = "";
     for (let category of Categories) {
+        console.log(category)
         const btnDiv = document.createElement("div");
         btnDiv.innerHTML = `
-         <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-green-200">Mamun</button>
+         <button class="w-full text-left px-3 py-2 rounded-lg hover:bg-green-200">${category.category_name}</button>
         `;
         categoriesList.append(btnDiv);
     }
