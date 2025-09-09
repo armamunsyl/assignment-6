@@ -1,16 +1,20 @@
 const LoadCatagories = () => {
+    showSpinner();
     fetch("https://openapi.programming-hero.com/api/categories")
         .then((res) => res.json())
         .then((json) => {
             DisplayCategories(json.categories);
+            hideSpinner();
             LoadAllPlants();
         });
 };
 
 const LoadAllPlants = () => {
+    showSpinner();
     fetch("https://openapi.programming-hero.com/api/plants")
         .then((res) => res.json())
         .then((json) => DisplayTrees(json.plants));
+        hideSpinner();
 };
 
 
@@ -45,10 +49,12 @@ const DisplayCategories = (Categories) => {
 };
 
 const loadTree = (id) => {
+    showSpinner();
     const url = `https://openapi.programming-hero.com/api/category/${id}`;
     fetch(url)
         .then((res) => res.json())
         .then((json) => DisplayTrees(json.plants));
+        hideSpinner();
 };
 
 const DisplayTrees = (trees) => {
@@ -151,6 +157,17 @@ const closeModal = () => {
     const modal = document.getElementById("treeModal");
     modal.classList.add("hidden");
     modal.classList.remove("flex");
+};
+const showSpinner = () => {
+    const spinner = document.getElementById("loadingSpinner");
+    spinner.classList.remove("hidden");
+    spinner.classList.add("flex");
+};
+
+const hideSpinner = () => {
+    const spinner = document.getElementById("loadingSpinner");
+    spinner.classList.add("hidden");
+    spinner.classList.remove("flex");
 };
 
 
